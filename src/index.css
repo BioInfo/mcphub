@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@layer base {
+  :root {
+    --titlebar-height: 52px;
+    color-scheme: dark;
+  }
+
+  html {
+    @apply antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    @apply bg-surface-950 text-surface-100 min-h-screen overflow-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-600;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-500/50 ring-offset-2 ring-offset-surface-950;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-brand-500/30 text-white;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Glass effect panels */
+  .glass {
+    @apply bg-surface-900/80 backdrop-blur-xl border border-surface-800/50;
+  }
+
+  .glass-subtle {
+    @apply bg-surface-900/50 backdrop-blur-md border border-surface-800/30;
+  }
+
+  /* Cards */
+  .card {
+    @apply glass rounded-xl p-4 transition-all duration-200;
+  }
+
+  .card-interactive {
+    @apply card hover:bg-surface-800/80 hover:border-surface-700/50 cursor-pointer;
+  }
+
+  .card-selected {
+    @apply card bg-brand-500/10 border-brand-500/30 shadow-glow;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-500 text-white hover:bg-brand-600 active:bg-brand-700 shadow-lg shadow-brand-500/25;
+  }
+
+  .btn-secondary {
+    @apply btn bg-surface-800 text-surface-100 hover:bg-surface-700 active:bg-surface-600 border border-surface-700;
+  }
+
+  .btn-ghost {
+    @apply btn text-surface-300 hover:text-surface-100 hover:bg-surface-800/50;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger-500/10 text-danger-400 hover:bg-danger-500/20 border border-danger-500/30;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-lg text-surface-400 hover:text-surface-100 hover:bg-surface-800/50 transition-colors;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full px-3 py-2 bg-surface-900 border border-surface-700 rounded-lg text-surface-100 placeholder-surface-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors;
+  }
+
+  .input-sm {
+    @apply input px-2.5 py-1.5 text-sm;
+  }
+
+  /* Toggle switch */
+  .toggle {
+    @apply relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-surface-950;
+  }
+
+  .toggle-enabled {
+    @apply bg-brand-500;
+  }
+
+  .toggle-disabled {
+    @apply bg-surface-700;
+  }
+
+  .toggle-knob {
+    @apply pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out;
+  }
+
+  /* Status indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full flex-shrink-0;
+  }
+
+  .status-healthy {
+    @apply status-dot bg-success-400 shadow-lg shadow-success-400/50;
+  }
+
+  .status-warning {
+    @apply status-dot bg-warning-400 shadow-lg shadow-warning-400/50;
+  }
+
+  .status-error {
+    @apply status-dot bg-danger-400 shadow-lg shadow-danger-400/50;
+  }
+
+  .status-disabled {
+    @apply status-dot bg-surface-600;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply badge bg-success-500/10 text-success-400 border border-success-500/20;
+  }
+
+  .badge-warning {
+    @apply badge bg-warning-500/10 text-warning-400 border border-warning-500/20;
+  }
+
+  .badge-danger {
+    @apply badge bg-danger-500/10 text-danger-400 border border-danger-500/20;
+  }
+
+  .badge-info {
+    @apply badge bg-brand-500/10 text-brand-400 border border-brand-500/20;
+  }
+
+  .badge-neutral {
+    @apply badge bg-surface-800 text-surface-400 border border-surface-700;
+  }
+
+  /* System indicator dots */
+  .system-dot {
+    @apply w-2.5 h-2.5 rounded-full transition-all duration-200;
+  }
+
+  .system-dot-enabled {
+    @apply system-dot bg-brand-400 shadow-sm shadow-brand-400/50;
+  }
+
+  .system-dot-disabled {
+    @apply system-dot bg-surface-700 border border-surface-600;
+  }
+
+  /* Code/mono text */
+  .code {
+    @apply font-mono text-sm bg-surface-800/50 px-1.5 py-0.5 rounded text-brand-300;
+  }
+
+  /* Dividers */
+  .divider {
+    @apply border-t border-surface-800;
+  }
+
+  /* Tooltips */
+  .tooltip {
+    @apply absolute z-50 px-2 py-1 text-xs font-medium text-white bg-surface-800 rounded-md shadow-lg border border-surface-700 whitespace-nowrap;
+  }
+
+  /* Drag region for window */
+  .drag-region {
+    -webkit-app-region: drag;
+  }
+
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    @apply animate-shimmer bg-gradient-to-r from-surface-800 via-surface-700 to-surface-800 bg-[length:200%_100%];
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-300;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(to right, theme('colors.brand.500'), theme('colors.brand.400')) 1;
+  }
+
+  .glow-brand {
+    box-shadow: 0 0 20px theme('colors.brand.500 / 20%'), 0 0 40px theme('colors.brand.500 / 10%');
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Truncate with ellipsis */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
